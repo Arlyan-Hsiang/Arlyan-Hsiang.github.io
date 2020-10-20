@@ -3,10 +3,12 @@ var buttonS = document.getElementById('S-size');
 var buttonM = document.getElementById('M-size');
 var buttonL = document.getElementById('L-size');
 var buttonOK = document.getElementById('comfirm');
+const cartButton = document.getElementById('button')
+const cartPreview = document.getElementById('cart-preview')
 //for variable number
 var mySize = document.querySelector('table tr td i1');
 //mySize.textContent = '0';
-var myAmount = document.querySelector('h1 a1');
+var myAmount = document.querySelector('a a1');
 //myAmount.textContent = '0';
 //for calculation
 var amount = 0;
@@ -32,4 +34,8 @@ buttonOK.onclick = function() {
         alert('Please choose your size.')
     }
 
+}
+
+cartButton.onclick = function() {
+    cartPreview.classList.toggle('active')
 }
