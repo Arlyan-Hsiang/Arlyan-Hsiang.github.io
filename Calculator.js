@@ -1,85 +1,133 @@
-//For Size selection
-const buttonS = document.getElementById('S-size');
-const buttonM = document.getElementById('M-size');
-const buttonL = document.getElementById('L-size');
-const buttonOK = document.getElementById('comfirm');
-const cartButton = document.getElementById('button');
-const cartPreview = document.getElementById('cart-preview');
-//for variable number
-let mySize = document.querySelector('table tr td i1');
-let myAmount = document.querySelector('a a1');
+//For Calculator selection
+const buttonC = document.getElementById('buttonC');
+const buttonchange = document.getElementById('buttonchange');
+const buttonpercentage = document.getElementById('buttonpercentage');
+const buttondelete = document.getElementById('buttondelete');
+const buttondivid = document.getElementById('buttondivid');
+const buttonmult = document.getElementById('buttonmult');
+const buttonless = document.getElementById('buttonless');
+const buttondot = document.getElementById('buttondot');
+const buttonequal = document.getElementById('buttonequal');
+const buttonplus = document.getElementById('buttonplus');
+//number button
+const button0 = document.getElementById('button0');
+const button1 = document.getElementById('button1');
+const button2 = document.getElementById('button2');
+const button3 = document.getElementById('button3');
+const button4 = document.getElementById('button4');
+const button5 = document.getElementById('button5');
+const button6 = document.getElementById('button6');
+const button7 = document.getElementById('button7');
+const button8 = document.getElementById('button8');
+const button9 = document.getElementById('button9');
+let txtresult = document.querySelector('div textarea');
+
 //for calculation
-let totalAmount = 0;
-let AmountS = 0;
-let AmountM = 0;
-let AmountL = 0;
-let sizeAmount = {};
-//Array for cart
-let product = new Array();
-let proContent = '';
+let totalAmount = "";
 
-//size choose
-buttonS.onclick = function() {
-    mySize.innerHTML = 'S';
+//NUMBER choose
+button0.onclick = function() {
+    totalAmount = totalAmount + "0";
+    changeResult();
 }
-buttonM.onclick = function() {
-    mySize.innerHTML = 'M';
+button1.onclick = function() {
+    totalAmount = totalAmount + "1";
+    changeResult();
 }
-buttonL.onclick = function() {
-        mySize.innerHTML = 'L';
+button2.onclick = function() {
+    totalAmount = totalAmount + "2";
+    changeResult();
 }
-//confirm for adding to the cart
-buttonOK.onclick = function() {
-        calAmount(mySize.innerHTML);
-        myAmount.innerHTML = totalAmount.toString();
-        proContent = cartPreview.querySelectorAll('p');
-        buildPreview();
+button3.onclick = function() {
+    totalAmount = totalAmount + "3";
+    changeResult();
 }
-//When press the cart, there is a preview.
-cartButton.onclick = function() {
-        cartPreview.classList.toggle('Active');
+button4.onclick = function() {
+    totalAmount = totalAmount + "4";
+    changeResult();
 }
-//function for calculating the amount of t-shirt 
-function calAmount(mySize) {
-    //if there is no correnspond size, add it in the array
-    if (product.indexOf(mySize) < 0) {
-        product.push(mySize);
-        console.log(product);
+button5.onclick = function() {
+    totalAmount = totalAmount + "5";
+    changeResult();
+}
+button6.onclick = function() {
+    totalAmount = totalAmount + "6";
+    changeResult();
+}
+button7.onclick = function() {
+    totalAmount = totalAmount + "7";
+    changeResult();
+}
+button8.onclick = function() {
+    totalAmount = totalAmount + "8";
+    changeResult();
+}
+button9.onclick = function() {
+        totalAmount = totalAmount + "9";
+        changeResult();
     }
-    console.log(sizeAmount);
-    switch (mySize) {
-        case 'S':
-            totalAmount++;
-            AmountS++;
-            sizeAmount['S'] = AmountS;
-            break;
-        case 'M':
-            totalAmount++;
-            AmountM++;
-            sizeAmount['M'] = AmountM;
-            break;
-        case 'L':
-            totalAmount++;
-            AmountL++;
-            sizeAmount['L'] = AmountL;
-            break;
-        default:
-            alert('Please choose your size.');
-            break;
+    //empty the calculation
+buttonC.onclick = function() {
+        totalAmount = "";
+        changeResult();
     }
-
-}
-//for cart preview
-function buildPreview() {
-    const plength = product.length;
-    if (plength > 0) {
-        for (let i = 0; i < plength; i++) {
-            proContent[i].innerHTML = "<table class='cart'><tr><td><img class= 'cart' src='images/tee.jpg'></td><td>" +
-                "Class Tee<br>" + sizeAmount[product[i]] + " x $100<br>" +
-                "Size " + product[i] + "</td>";
+    //change to positive/negative number
+buttonchange.onclick = function() {
+        switch (Math.sign(totalAmount)) {
+            case -1:
+                totalAmount = (parseFloat(totalAmount) * -1).toString();
+                changeResult();
+                break;
+            case 1:
+                totalAmount = parseFloat(totalAmount) * -1
+                changeResult();
+                break;
+            default:
+                break;
         }
-    } 
-    else {
-        alert('nothing inside your cart.');
     }
+    //delete
+buttondelete.onclick = function() {
+        let str = totalAmount.slice(0, totalAmount.length - 1);
+        totalAmount = str
+        changeResult();
+    }
+    //plus
+buttonplus.onclick = function() {
+        totalAmount = totalAmount + "+";
+        changeResult();
+    }
+    //less
+buttonless.onclick = function() {
+        totalAmount = totalAmount + "-";
+        changeResult();
+    }
+    //multiple
+buttonmult.onclick = function() {
+        totalAmount = totalAmount + "*";
+        changeResult();
+    }
+    //multiple
+buttondivid.onclick = function() {
+        totalAmount = totalAmount + "/";
+        changeResult();
+    }
+    //for .
+buttondot.onclick = function() {
+    totalAmount = totalAmount + ".";
+    changeResult();
+}
+buttonpercentage.onclick = function() {
+        totalAmount = eval(totalAmount);
+        totalAmount = totalAmount / 100;
+        changeResult();
+    }
+    //equal
+buttonequal.onclick = function() {
+    totalAmount = eval(totalAmount);
+    changeResult();
+}
+
+function changeResult() {
+    txtresult.innerHTML = totalAmount;
 }
