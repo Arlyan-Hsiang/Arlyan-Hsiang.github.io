@@ -88,13 +88,16 @@ buttonchange.onclick = function() {
     }
     //delete
 buttondelete.onclick = function() {
-        let str = totalAmount.slice(0, totalAmount.length - 1);
-        totalAmount = str
-        changeResult();
-    }
-    //plus
+    let str = totalAmount.slice(0, totalAmount.length - 1);
+    totalAmount = str
+    changeResult();
+}
+
+//calculate element
 buttonplus.onclick = function() {
-        totalAmount = totalAmount + "+";
+        let str = totalAmount.slice(totalAmount.length, 1);
+        if (str)
+            totalAmount = totalAmount + "+";
         changeResult();
     }
     //less
@@ -118,13 +121,13 @@ buttondot.onclick = function() {
     changeResult();
 }
 buttonpercentage.onclick = function() {
-        totalAmount = eval(totalAmount);
+        totalAmount = math.evaluate(totalAmount);
         totalAmount = totalAmount / 100;
         changeResult();
     }
     //equal
 buttonequal.onclick = function() {
-    totalAmount = eval(totalAmount);
+    totalAmount = math.evaluate(totalAmount);
     changeResult();
 }
 

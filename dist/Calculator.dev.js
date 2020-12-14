@@ -105,11 +105,12 @@ buttondelete.onclick = function () {
   var str = totalAmount.slice(0, totalAmount.length - 1);
   totalAmount = str;
   changeResult();
-}; //plus
+}; //calculate element
 
 
 buttonplus.onclick = function () {
-  totalAmount = totalAmount + "+";
+  var str = totalAmount.slice(totalAmount.length, 1);
+  if (str) totalAmount = totalAmount + "+";
   changeResult();
 }; //less
 
@@ -138,14 +139,14 @@ buttondot.onclick = function () {
 };
 
 buttonpercentage.onclick = function () {
-  totalAmount = eval(totalAmount);
+  totalAmount = math.evaluate(totalAmount);
   totalAmount = totalAmount / 100;
   changeResult();
 }; //equal
 
 
 buttonequal.onclick = function () {
-  totalAmount = eval(totalAmount);
+  totalAmount = math.evaluate(totalAmount);
   changeResult();
 };
 
